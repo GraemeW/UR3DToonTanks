@@ -32,9 +32,6 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess="true"), Category = "PawnHookups")
 	USceneComponent* ProjectileSpawnPoint;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess="true"), Category = "PawnAttributes")
-	float Speed = 400.f;
-
 	TCHAR* CapsuleName = TEXT("Capsule Collider");
 	TCHAR* BaseName = TEXT("Base");
 	TCHAR* TurretName = TEXT("Turret");
