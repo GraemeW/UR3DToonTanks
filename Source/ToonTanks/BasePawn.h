@@ -18,6 +18,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	void RotateTurret(FVector LookAtTarget, float DeltaTime);
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess="true"), Category="PawnHookups")
@@ -26,11 +27,14 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess="true"), Category = "PawnHookups")
 	UStaticMeshComponent* BaseMesh;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess="true"), Category = "PawnHookups")
-	UStaticMeshComponent* TurretMesh;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "PawnHookups")
+		UStaticMeshComponent* TurretMesh;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess="true"), Category = "PawnHookups")
 	USceneComponent* ProjectileSpawnPoint;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Targeting")
+	float TurretLookAtSpeed = 5.f;
 
 	TCHAR* CapsuleName = TEXT("Capsule Collider");
 	TCHAR* BaseName = TEXT("Base");

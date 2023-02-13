@@ -21,6 +21,10 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	virtual void Tick(float DeltaTime) override;
 
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 private:
 	// Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "PawnHookups")
@@ -41,4 +45,7 @@ private:
 	// Methods
 	void Move(float Value);
 	void Turn(float Value);
+
+	// Cached References
+	APlayerController* PlayerControllerReference;
 };
