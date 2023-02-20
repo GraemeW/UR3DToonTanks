@@ -38,6 +38,11 @@ void ABasePawn::RotateTurret(FVector LookAtTarget, float DeltaTime)
 	TurretMesh->SetWorldRotation(FMath::RInterpTo(TurretMesh->GetComponentRotation(), LookAtRotation, DeltaTime, TurretLookAtSpeed));
 }
 
+void ABasePawn::Fire()
+{
+	DrawDebugSphere(GetWorld(), ProjectileSpawnPoint->GetComponentLocation(), 50.f, 16, FColor::Red, true, 5.f);
+}
+
 // Called every frame
 void ABasePawn::Tick(float DeltaTime)
 {
