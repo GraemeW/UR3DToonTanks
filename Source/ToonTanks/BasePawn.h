@@ -29,13 +29,16 @@ private:
 	UStaticMeshComponent* BaseMesh;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "PawnHookups")
-		UStaticMeshComponent* TurretMesh;
+	UStaticMeshComponent* TurretMesh;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess="true"), Category = "PawnHookups")
 	USceneComponent* ProjectileSpawnPoint;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Targeting")
 	float TurretLookAtSpeed = 5.f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	TSubclassOf<class AProjectile> ProjectileClass;
 
 	TCHAR* CapsuleName = TEXT("Capsule Collider");
 	TCHAR* BaseName = TEXT("Base");

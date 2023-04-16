@@ -2,6 +2,7 @@
 
 
 #include "BasePawn.h"
+#include "Projectile.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/StaticMeshComponent.h"
 
@@ -40,7 +41,12 @@ void ABasePawn::RotateTurret(FVector LookAtTarget, float DeltaTime)
 
 void ABasePawn::Fire()
 {
-	DrawDebugSphere(GetWorld(), ProjectileSpawnPoint->GetComponentLocation(), 50.f, 16, FColor::Red, true, 5.f);
+	if (ProjectileClass == nullptr) { return; }
+
+	GetWorld()->SpawnActor<AProjectile>(ProjectileClass, ProjectileSpawnPoint->GetComponentLocation(), TurretMesh->GetComponentRotation());
+
+	// Debug:
+	// DrawDebugSphere(GetWorld(), ProjectileSpawnPoint->GetComponentLocation(), 50.f, 16, FColor::Red, true, 5.f);
 }
 
 // Called every frame
