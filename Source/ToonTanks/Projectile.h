@@ -38,6 +38,10 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float MaxSpeed = 5000.0f;
 
+	// Private Methods
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

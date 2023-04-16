@@ -4,6 +4,7 @@
 #include "Projectile.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "Tank.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -23,7 +24,7 @@ AProjectile::AProjectile()
 void AProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
 }
 
 // Called every frame
@@ -33,3 +34,16 @@ void AProjectile::Tick(float DeltaTime)
 
 }
 
+void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+	ATank* tank = Cast<ATank>(OtherActor);
+	UE_LOG(LogTemp, Display, TEXT("Hit Component: %s"), *HitComp->GetName());
+	UE_LOG(LogTemp, Display, TEXT("Other Actor: %s"), *OtherActor->GetName());
+	UE_LOG(LogTemp, Display, TEXT("Other Component: %s"), *OtherComp->GetName());
+
+	if (tank != nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Tank Hit"));
+	}
+	this->Destroy();
+}
