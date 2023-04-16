@@ -38,6 +38,9 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float MaxSpeed = 5000.0f;
 
+	// State
+	float CurrentDamage = 0.0f;
+
 	// Private Methods
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
@@ -45,5 +48,8 @@ private:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	// Public Methods
+	void SetCurrentDamage(float Damage);
 
 };

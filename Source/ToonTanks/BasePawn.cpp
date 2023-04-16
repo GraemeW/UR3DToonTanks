@@ -5,6 +5,7 @@
 #include "Projectile.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "HealthComponent.h"
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -14,6 +15,7 @@ ABasePawn::ABasePawn()
 
 	CapsuleComp = CreateDefaultSubobject<UCapsuleComponent>(CapsuleName);
 	RootComponent = CapsuleComp;
+	HealthComp = CreateDefaultSubobject<UHealthComponent>(HealthName);
 
 	BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>(BaseName);
 	BaseMesh->SetupAttachment(CapsuleComp);
@@ -43,7 +45,9 @@ void ABasePawn::Fire()
 {
 	if (ProjectileClass == nullptr) { return; }
 
-	GetWorld()->SpawnActor<AProjectile>(ProjectileClass, ProjectileSpawnPoint->GetComponentLocation(), TurretMesh->GetComponentRotation());
+	AProjectile* Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClass, ProjectileSpawnPoint->GetComponentLocation(), TurretMesh->GetComponentRotation());
+	Projectile->SetOwner(this);
+	Projectile->SetCurrentDamage(Damage);
 
 	// Debug:
 	// DrawDebugSphere(GetWorld(), ProjectileSpawnPoint->GetComponentLocation(), 50.f, 16, FColor::Red, true, 5.f);

@@ -4,7 +4,9 @@
 #include "Projectile.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
-#include "Tank.h"
+#include "HealthComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "BaseDamageType.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -34,16 +36,17 @@ void AProjectile::Tick(float DeltaTime)
 
 }
 
+void AProjectile::SetCurrentDamage(float Damage)
+{
+	CurrentDamage = Damage;
+}
+
 void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	ATank* tank = Cast<ATank>(OtherActor);
-	UE_LOG(LogTemp, Display, TEXT("Hit Component: %s"), *HitComp->GetName());
-	UE_LOG(LogTemp, Display, TEXT("Other Actor: %s"), *OtherActor->GetName());
-	UE_LOG(LogTemp, Display, TEXT("Other Component: %s"), *OtherComp->GetName());
+	AActor* ProjectileOwner = GetOwner();
+	if (ProjectileOwner == nullptr) { return; }
+	if (OtherActor == nullptr || OtherActor == this || OtherActor == ProjectileOwner) { return; }
 
-	if (tank != nullptr)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Tank Hit"));
-	}
+	UGameplayStatics::ApplyDamage(OtherActor, CurrentDamage, ProjectileOwner->GetInstigatorController(), this, UBaseDamageType::StaticClass());
 	this->Destroy();
 }

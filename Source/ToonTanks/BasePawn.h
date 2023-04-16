@@ -25,6 +25,9 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess="true"), Category="PawnHookups")
 	class UCapsuleComponent* CapsuleComp;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "PawnHookups")
+	class UHealthComponent* HealthComp;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess="true"), Category = "PawnHookups")
 	UStaticMeshComponent* BaseMesh;
 
@@ -40,7 +43,11 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	TSubclassOf<class AProjectile> ProjectileClass;
 
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	float Damage = 10.0f;
+
 	TCHAR* CapsuleName = TEXT("Capsule Collider");
+	TCHAR* HealthName = TEXT("Health");
 	TCHAR* BaseName = TEXT("Base");
 	TCHAR* TurretName = TEXT("Turret");
 	TCHAR* ProjectileSpawnPointName = TEXT("Spawn Point");
