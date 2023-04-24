@@ -28,8 +28,9 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Parameters")
 	float MaxHP = 200.0f;
 
-	// State
+	// State / Cached References
 	float CurrentHP = 100.0f; // Overridden to InitialHealth on BeginPlay()
+	class ATTGameMode* TTGameMode;
 
 	// Methods
 	UFUNCTION()
@@ -38,10 +39,4 @@ private:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-	// Public Methods
-	void AdjustHP(float points);
-	void KillSelf();
-	
-		
 };

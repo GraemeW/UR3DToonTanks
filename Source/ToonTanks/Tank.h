@@ -20,6 +20,8 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	virtual void Tick(float DeltaTime) override;
+	void HandleDestruction();
+	APlayerController* GetTankPlayerController() const;
 
 protected:
 	// Called when the game starts or when spawned
@@ -47,5 +49,5 @@ private:
 	void Turn(float Value);
 
 	// Cached References
-	APlayerController* PlayerControllerReference;
+	APlayerController* TankPlayerController;
 };

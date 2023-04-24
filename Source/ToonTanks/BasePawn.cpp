@@ -27,6 +27,14 @@ ABasePawn::ABasePawn()
 	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
 }
 
+void ABasePawn::HandleDestruction()
+{
+	// TODO:  Visual & Sound Effects
+
+	UE_LOG(LogTemp, Display, TEXT("Destroying %s"), *(GetOwner()->GetName()));
+
+}
+
 // Called when the game starts or when spawned
 void ABasePawn::BeginPlay()
 {

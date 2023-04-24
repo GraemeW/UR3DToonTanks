@@ -50,3 +50,5 @@ Session.vim
 # Visual Studio
 .vs
 Content/Assets/
+Source/ToonTanks/TempToDelete.cpp
+Source/ToonTanks/TempToDelete.h

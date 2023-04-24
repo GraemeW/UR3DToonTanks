@@ -27,6 +27,12 @@ void ATower::Tick(float DeltaTime)
 	RotateTurret(PlayerPosition, DeltaTime);
 }
 
+void ATower::HandleDestruction()
+{
+	Super::HandleDestruction();
+	Destroy();
+}
+
 void ATower::CheckFireCondition()
 {
 	if (!InRange) { return; }
