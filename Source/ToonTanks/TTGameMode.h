@@ -21,6 +21,14 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	class ATank* Tank;
+	// Parameters
+	UPROPERTY(EditAnywhere, Category = "GameStart")
+	float StartDelay = 3.f;
 	
+	// Methods
+	void HandleGameStart();
+
+	// State
+	class ATank* Tank;
+	class ATTPlayerController* TTPlayerController;
 };
