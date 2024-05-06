@@ -9,7 +9,8 @@ public class ToonTanksEditorTarget : TargetRules
 	{
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V2;
+		bOverrideBuildEnvironment = true;
 
-		ExtraModuleNames.AddRange( new string[] { "ToonTanks" } );
+        ExtraModuleNames.AddRange( new string[] { "ToonTanks" } );
 	}
 }
